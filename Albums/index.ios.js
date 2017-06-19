@@ -1,12 +1,11 @@
 "use strict";
 
-import React, { Component } from 'react';
-import { Text,
-         AppRegistry } from 'react-native';
+import React from 'react';
+import { AppRegistry } from 'react-native';
+import Header from './src/components/header';
 
 const App = () => (
-        <Text>Some Text</Text>
-    );
+    <Header headerText={'Album'} />
+);
 
 AppRegistry.registerComponent('Albums', () => App);
-
