@@ -4,14 +4,16 @@
 "use strict";
 
 import React from 'react';
-import { Text, View, Image } from 'react-native';
+import { Text, View, Image, Linking } from 'react-native';
 import Card from './Card';
 import CardSection from './CardSection';
+import Button from './Button';
 
 const AlbumDetail = ({ album }) => {
     const {
         title,
         artist,
+        url,
         image,
         thumbnail_image } = album;
     const {
@@ -38,6 +40,10 @@ const AlbumDetail = ({ album }) => {
 
             <CardSection>
                 <Image style={imageStyle} source={{ uri: image }}/>
+            </CardSection>
+            
+            <CardSection>
+                <Button text="Buy now!" onPress={() => Linking.openURL(url)}/>
             </CardSection>
         </Card>
     );
