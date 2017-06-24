@@ -3,7 +3,7 @@
  * Created by joelacedo on 23/06/2017.
  */
 import React from 'react'
-import { Text, TouchableOpacity } from 'react-native';
+import { View, Text, TouchableOpacity } from 'react-native';
 
 const Button = ({ onPress, text }) => {
     const { buttonStyle, textStyle } = styles;

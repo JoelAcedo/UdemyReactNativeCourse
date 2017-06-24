@@ -3,8 +3,8 @@
  */
 import React, { Component } from 'react';
 import firebase from 'firebase';
-import { View, Text } from 'react-native';
-import { Header } from './components/common';
+import { View } from 'react-native';
+import { Header, Button, Spinner } from './components/common';
 import LoginForm from './components/LoginForm';
 
 let firebaseConfig = {
@@ -17,19 +17,59 @@ let firebaseConfig = {
 };
 
 class App extends Component {
+    state = { loggedIn: null };
 
     componentWillMount() {
         firebase.initializeApp(firebaseConfig);
+
+        firebase.auth().onAuthStateChanged((user) => {
+            if (user) {
+                this.setState({ loggedIn: true })
+            } else {
+                this.setState({ loggedIn: false })
+            }
+        });
+    }
+
+    onButtonPress() {
+
+    }
+
+    renderContent() {
+        switch (this.state.loggedIn) {
+            case true:
+                return (
+                    <View style={styles.containerStyle}>
+                        <Button
+                            onPress={() => firebase.auth().signOut()}
+                            text="Log out"/>
+                    </View>
+                );
+            case false:
+                return <LoginForm />;
+            default:
+                return <Spinner size="large"/>
+        }
     }
 
     render() {
         return(
             <View>
                 <Header headerText="Authentication"/>
-                <LoginForm />
+                {this.renderContent()}
             </View>
         );
     }
 }
+
+const styles = {
+    containerStyle: {
+        flexDirection: 'row',
+        marginLeft: 5,
+        marginRight: 5,
+        marginTop: 10,
+        marginBottom: 10
+    }
+};
 
 export default App;
