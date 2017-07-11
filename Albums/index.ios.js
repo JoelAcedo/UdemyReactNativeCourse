@@ -1,12 +1,15 @@
 "use strict";
 
-import React, { Component } from 'react';
-import { Text,
-         AppRegistry } from 'react-native';
+import React from 'react';
+import { AppRegistry, View } from 'react-native';
+import Header from './src/components/Header';
+import AlbumList from './src/components/AlbumList';
 
 const App = () => (
-        <Text>Some Text</Text>
-    );
+    <View style={{ flex: 1 }}>
+        <Header headerText={'Album'} />
+        <AlbumList />
+    </View>
+);
 
 AppRegistry.registerComponent('Albums', () => App);
-
